@@ -1,0 +1,111 @@
+# 16) Реализовать для фигур функцию расчета площади.
+
+# 17) Создать несколько объектов класса треугольник, прямоугольник и фигура, поместить их в список. Рассчитать суммарную площадь всех форм, находящихся в списке.
+
+# 18) Для 17 добавить в список объект линия (для которого не реализована функция площади). При помощи функции определения принадлежности объекта к классу модифицировать расчет суммарной площади так, чтобы он не приводил к ошибке.
+
+# 19) При помощи декоратора @property превратить функцию площади в свойство. Модифицировать 18 в соответствии с новыми возможностями
+
+class Figure(object):
+    def __init__(self, x=10, y=10):
+        self.x, self.y = x, y
+        self.count = 0
+
+    def draw(self):
+        A = [['_' for i in range(20)] for j in range(20)]
+        A[self.x][self.y] = '*'
+        self.count1 += 1
+        for i in range(20):
+            for j in range(20):
+                print(A[i][j], end=' ')
+            print('\n', end='')
+
+    def square(self):
+        return self.count
+
+
+d1 = Figure()
+
+
+class Triangle(Figure):
+    def draw(self):
+        self.count = 0
+        A = [['_' for i in range(20)] for j in range(20)]
+        for i in range(self.x - 1):
+            for j in range(i):
+                A[i][j] = '*'
+                self.count += 1
+        for i in range(20):
+            for j in range(20):
+                print(A[i][j], end=' ')
+            print('\n', end='')
+
+    def sq(self):
+        return self.count
+
+
+class Rectangle(Figure):
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+        self.count = 0
+
+    def draw(self):
+        A = [['_' for i in range(20)] for j in range(20)]
+        for i in range(self.y):
+            for j in range(self.x):
+                A[i][j] = '*'
+                self.count += 1
+        for i in range(20):
+            for j in range(20):
+                print(A[i][j], end=' ')
+            print('\n', end='')
+
+    def square(self):
+        return self.count
+
+
+class Line:
+    def __init__(self, x, y, x2, y2):
+        self.x = x
+        self.y = y
+        self.x2 = x2
+        self.y2 = y2
+        self.count = 0
+
+    def draw(self):
+        A = [['_' for i in range(20)] for j in range(20)]
+        for x in range(20):
+            for y in range(20):
+                if (y - self.y) / (self.y2 - self.y) >= (x - self.x) / (self.x2 - self.x):
+                    A[x][y] = '*'
+        for i in range(20):
+            for j in range(20):
+                if A[i][j] == '*':
+                    self.count += 1
+
+                    for p in range(j + 1, 20):
+                        A[i][p] = '_'
+        for i in range(20):
+            for k in range(20):
+                print(A[i][j], end=' ')
+            print('\n', end='')
+
+    def square(self):
+        return self.count
+
+
+d1 = Figure()
+d1.draw()
+print(d1.square())
+d2 = Rectangle(5, 6)
+d2.draw()
+print(d2.square())
+d3 = Triangle()
+d3.draw()
+print(d3.square())
+d4 = Line(5, 7, 5, 8)
+d4.draw()
+print(d1.square() + d2.square() + d3.square() + d4.square())
+
+
+ 
